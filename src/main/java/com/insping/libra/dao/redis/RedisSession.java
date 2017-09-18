@@ -869,10 +869,10 @@ public class RedisSession {
     public Set<Tuple> zRevrangeByAscSet(String key, long start, long end) {
         try {
             // HashMap<String, Double> ret = new HashMap<>();
-            // Set<Tuple> result = jedis.zrangeWithScores(key, start, end);
+            // Set<Tuple> build = jedis.zrangeWithScores(key, start, end);
             Set<Tuple> result = jedis.zrevrangeWithScores(key, start, end);
-            // if (result != null && result.size() > 0) {
-            // for (Tuple member : result) {
+            // if (build != null && build.size() > 0) {
+            // for (Tuple member : build) {
             // ret.put(member.getElement(), member.getScore());
             // }
             // }
@@ -946,14 +946,14 @@ public class RedisSession {
     public Map<String, String> getBatch(Collection<String> list) {
         return null;
         /*
-		 * Map<String, String> result = new HashMap<>(); Map<String,
+		 * Map<String, String> build = new HashMap<>(); Map<String,
 		 * Response<String>> responses = new HashedMap(); try { Pipeline
 		 * pipeline = jedis.pipelined(); for (String l : list) { String key =
 		 * redisKey.suffix(l); responses.put(l, pipeline.get(key)); }
 		 * pipeline.sync(); for (String key : responses.keySet()) { String v =
 		 * responses.get(key).get(); if (StringUtils.isNotBlank(v)) {
-		 * result.put(key, v); } } } finally { if (autoClose) { jedis.close(); }
-		 * } return result;
+		 * build.put(key, v); } } } finally { if (autoClose) { jedis.close(); }
+		 * } return build;
 		 */
     }
 

@@ -17,12 +17,10 @@ public class RelayHandler extends ChannelInboundHandlerAdapter implements Instan
         LibraMessage message = (LibraMessage) msg;
         // 新方法 , 统一使用目标serverID + protocolID 做消息处理
         if (message.getHead() == null || message.getHead().getSrcServerID() == LibraConfig.SERVER_ID) {
-            System.out.println("RelayHandler-1");
             ctx.fireChannelRead(msg);
             return;
         }
         //  转发处理
-        System.out.println("RelayHandler-2");
         GeneralResponse resp = null;
         // SrcServerID 为-1时表示目标为客户端
         if (message.getHead().getSrcServerID() == -1) {
@@ -34,7 +32,7 @@ public class RelayHandler extends ChannelInboundHandlerAdapter implements Instan
         }
         // 转发不成功的情况下是,返回原因
         if (resp.isFail()) {
-            LibraMessage libraMessage = resp.result(message);
+            LibraMessage libraMessage = resp.build(message);
             ctx.writeAndFlush(libraMessage);
         }
     }

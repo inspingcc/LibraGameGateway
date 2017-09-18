@@ -45,8 +45,9 @@ public class GeneralResponse {
         builder.setDesc(desc);
     }
 
-    public LibraMessage result(LibraMessage message) throws Exception {
+    public LibraMessage build(LibraMessage message) throws Exception {
         LibraHead head = new LibraHead();
+        head.setUserInfo(message.getHead().getUserInfo());
         head.setDestServerID(LibraConfig.SERVER_ID);
         head.setSrcServerID(message.getHead().getDestServerID());
         head.setProtocolID(ModuleType.GENERAL_RESPONSE);
