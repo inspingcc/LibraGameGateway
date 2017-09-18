@@ -3,6 +3,7 @@ package com.insping.libra.sock.net.codec;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.protobuf.MessageLite;
 import com.insping.Instances;
 import com.insping.libra.sock.net.codec.data.LibraHead;
 import com.insping.libra.sock.net.codec.data.LibraMessage;
@@ -63,7 +64,12 @@ public class LibraDecoder extends ByteToMessageDecoder implements Instances {
                 offset = 0;
             }
             byte[] result = Arrays.copyOfRange(array, offset, readableLen);
-            message.setBody(result);
+            MessageLite messageLite = handlerMgr.searchMessage(head.getProtocolID());
+            if (messageLite == null) {
+                message.setBody(result);
+            } else {
+                message.setBody(messageLite.getParserForType().parseFrom(result));
+            }
             out.add(message);
         } catch (Exception e) {
             e.printStackTrace();

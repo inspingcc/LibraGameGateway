@@ -119,7 +119,7 @@ public class RedisSession {
         try {
             String ret = jedis.set(key, field);
             // 增加统计
-            info("<set>key=" + key + "|field=" + field);
+            info("<set>key=" + key.toString() + "|field=" + field.toString());
             return ret;
         } finally {
             if (autoClose) {
@@ -500,7 +500,7 @@ public class RedisSession {
         try {
             Map<byte[], byte[]> ret = jedis.hgetAll(key);
             // 增加统计
-            info("<hMGetAll>key=" + key);
+            info("<hMGetAll>key=" + key.toString());
             return ret;
         } finally {
             if (autoClose) {

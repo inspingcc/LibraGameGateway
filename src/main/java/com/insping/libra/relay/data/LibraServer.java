@@ -1,5 +1,6 @@
 package com.insping.libra.relay.data;
 
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 
 public class LibraServer {
@@ -12,7 +13,7 @@ public class LibraServer {
     private long heartbeatTime;
     private String serverIp;
     private String serverDesc;
-    private ChannelHandlerContext ctx;
+    private Channel channel;
     private volatile boolean isClosed = false;// 是否关闭的标识
 
     public LibraServer() {
@@ -99,12 +100,11 @@ public class LibraServer {
         this.serverDesc = serverDesc;
     }
 
-    public ChannelHandlerContext getCtx() {
-        return ctx;
+    public Channel getChannel() {
+        return channel;
     }
 
-    public void setCtx(ChannelHandlerContext ctx) {
-        this.ctx = ctx;
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
-
 }

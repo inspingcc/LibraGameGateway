@@ -1,26 +1,28 @@
 package com.insping.libra.relay.data;
 
-import io.netty.channel.ChannelHandlerContext;
+import com.insping.libra.proto.ReqAuthGetServerList;
+import com.insping.libra.sock.net.codec.data.UserInfo;
+import io.netty.channel.Channel;
 
 public class LibraClient {
-    private long uid;// uid
+    private UserInfo userInfo;//userInfo
     private int serverID;// 当前服务器所在服务器ID
-    private ChannelHandlerContext ctx;// 连接上下文 的通道
+    private Channel channel;// 连接上下文 的通道
     private volatile boolean isClosed = false;// 是否关闭的标识
     private boolean isKick = false;// 是否被踢下线
 
-    public  LibraClient(long uid, ChannelHandlerContext ctx) {
-        this.uid = uid;
-        this.ctx = ctx;
+    public LibraClient( ReqAuthGetServerList.AuthGetServerListData data, Channel channel) {
+        this.userInfo = new UserInfo(data.getUid(), data.getCid(), data.getEid());
+        this.channel = channel;
     }
 
 
-    public long getUid() {
-        return uid;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setUid(long uid) {
-        this.uid = uid;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public int getServerID() {
@@ -31,12 +33,12 @@ public class LibraClient {
         this.serverID = serverID;
     }
 
-    public ChannelHandlerContext getCtx() {
-        return ctx;
+    public Channel getChannel() {
+        return channel;
     }
 
-    public void setCtx(ChannelHandlerContext ctx) {
-        this.ctx = ctx;
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 
     public boolean isClosed() {

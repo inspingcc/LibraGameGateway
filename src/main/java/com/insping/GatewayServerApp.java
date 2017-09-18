@@ -11,6 +11,8 @@ public class GatewayServerApp implements Instances {
         LibraLog.init();
         // 加载config
         LibraConfig.load();
+        // 加载handlers
+        handlerMgr.register();
         // 初始化redis
         RedisSessionUtil.getInstance();
         // 启动Socket服务

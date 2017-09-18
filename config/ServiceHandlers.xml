@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceHandlers>
+    <ServiceHandler protocolCode="0x70000001" protobufClass="com.insping.libra.proto.ReqServerRegister$ServerRegisterData" handlerClass="com.insping.libra.sock.net.handler.impl.ServerRegisterHandler"
+                    function="服务器注册"/>
+    <ServiceHandler protocolCode="0x70000002" protobufClass="com.insping.libra.proto.ReqServerHeartbeat$HeartbeatData" handlerClass="com.insping.libra.sock.net.handler.impl.ServerHeartbeatHandler"
+                    function="服务器心跳"/>
+    <ServiceHandler protocolCode="0x70000003" protobufClass="com.insping.libra.proto.ReqAuthGetServerList$AuthGetServerListData"
+                    handlerClass="com.insping.libra.sock.net.handler.impl.ClientAuthGetServerListHandler"
+                    function="客户端验证并获取服务器列表"/>
+    <ServiceHandler protocolCode="0x70000004" protobufClass="com.insping.libra.proto.ReqSelectServer$SelectServerData"
+                    handlerClass="com.insping.libra.sock.net.handler.impl.ClientSelectServerHandler"
+                    function="选择进入的服务器"/>
+</ServiceHandlers>

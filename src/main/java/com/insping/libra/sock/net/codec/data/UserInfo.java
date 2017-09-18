@@ -1,35 +1,41 @@
 package com.insping.libra.sock.net.codec.data;
 
 public class UserInfo {
-	private long uid;
-	private int cid;
-	private int eid;
+    private long uid;
+    private int cid;
+    private int eid;
 
-	public UserInfo() {
+    public UserInfo() {
 
-	}
+    }
 
-	public long getUid() {
-		return uid;
-	}
+    public UserInfo(long uid, int cid, int eid) {
+        this.uid = uid;
+        this.cid = cid;
+        this.eid = eid;
+    }
 
-	public void setUid(long uid) {
-		this.uid = uid;
-	}
+    public long getUid() {
+        return uid;
+    }
 
-	public int getCid() {
-		return cid;
-	}
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
 
-	public void setCid(int cid) {
-		this.cid = cid;
-	}
+    public int getCid() {
+        return cid;
+    }
 
-	public int getEid() {
-		return eid;
-	}
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
 
-	public void setEid(int eid) {
-		this.eid = eid;
-	}
+    public int getEid() {
+        return eid;
+    }
+
+    public void setEid(int eid) {
+        this.eid = eid;
+    }
 }
